@@ -5,10 +5,14 @@ import plotly.express as px
 
 page = st.selectbox("Choose your page", ["Population", "Survival Curve"]) 
 
+cache_population = 'data_cache/population/dataframe.pkl'
+df = pd.read_pickle(cache_population)
+
+with open('footnote.md') as f:
+  footnote = f.read()
+
 if page == "Population":
   # population trend
-  cache_population = 'data_cache/population/dataframe.pkl'
-  df = pd.read_pickle(cache_population)
   st.title('Viewing Population data')
   
   all_min_age = df.age.min()
@@ -33,8 +37,6 @@ if page == "Population":
 
 elif page == "Survival Curve":
   # graph of birth_year and age
-  cache_population = 'data_cache/population/dataframe.pkl'
-  df = pd.read_pickle(cache_population)
   st.title('Viewing Population data by birth year')
   
   all_min_year = 1890
@@ -57,3 +59,4 @@ elif page == "Survival Curve":
       )
   st.plotly_chart(fig)
 
+st.markdown(footnote)

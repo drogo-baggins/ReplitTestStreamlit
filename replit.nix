@@ -1,6 +1,8 @@
 { pkgs }: {
   deps = [
     pkgs.python38Full
+    pkgs.xdg-utils
+    pkgs.streamlit
   ];
   env = {
     PYTHON_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
